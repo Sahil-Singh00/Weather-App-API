@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherSphere - Real-Time Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+</head>
+<body>
+    <div class="weather-app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">WeatherSphere</h1>
+                <div class="auth-buttons">
+                    <button id="login-btn" class="btn auth-btn">Log In</button>
+                    <button id="signup-btn" class="btn auth-btn">Sign Up</button>
+                </div>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="city-search" placeholder="Search city...">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <button id="current-location-btn" class="btn location-btn">
+                    <i class="fas fa-location-arrow"></i> Current Location
+                </button>
+            </div>
+            
+            <div class="weather-main">
+                <div class="current-weather">
+                    <div class="weather-icon" id="main-weather-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="temperature">
+                        <span id="current-temp">24</span>
+                        <span class="degree">°C</span>
+                    </div>
+                    <div class="weather-description" id="weather-description">Sunny</div>
+                    <div class="date-location">
+                        <div class="date" id="current-date">Today, June 15</div>
+                        <div class="location" id="current-location">New York, US</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="weather-details">
+                <!-- Weather Highlights -->
+                <section class="highlights-section">
+                    <h2 class="section-title">Today's Highlights</h2>
+                    <div class="highlights-grid">
+                        <!-- Air Quality -->
+                        <div class="highlight-card">
+                            <div class="card-header">
+                                <h3>Air Quality Index</h3>
+                                <div class="aqi-value" id="aqi-value">45</div>
+                            </div>
+                            <div class="aqi-status" id="aqi-status">Good</div>
+                            <div class="aqi-bar">
+                                <div class="aqi-progress" id="aqi-progress"></div>
+                            </div>
+                            <div class="aqi-description" id="aqi-description">Air quality is satisfactory.</div>
+                        </div>
+                        
+                        <!-- Sunrise/Sunset -->
+                        <div class="highlight-card">
+                            <div class="card-header">
+                                <h3>Sunrise & Sunset</h3>
+                            </div>
+                            <div class="sun-times">
+                                <div class="sun-time">
+                                    <i class="fas fa-sunrise"></i>
+                                    <span id="sunrise-time">06:45 AM</span>
+                                </div>
+                                <div class="sun-time">
+                                    <i class="fas fa-sunset"></i>
+                                    <span id="sunset-time">07:30 PM</span>
+                                </div>
+                            </div>
+                            <div class="sun-progress">
+                                <div class="sun-progress-bar" id="sun-progress-bar"></div>
+                            </div>
+                            <div class="daylight">
+                                <span id="daylight-hours">12h 45m</span> of daylight
+                            </div>
+                        </div>
+                        
+                        <!-- Humidity -->
+                        <div class="highlight-card">
+                            <div class="card-header">
+                                <h3>Humidity</h3>
+                                <div class="humidity-value" id="humidity-value">65%</div>
+                            </div>
+                            <div class="humidity-gauge">
+                                <div class="gauge" id="humidity-gauge"></div>
+                            </div>
+                            <div class="humidity-status" id="humidity-status">Moderate humidity</div>
+                        </div>
+                        
+                        <!-- Wind -->
+                        <div class="highlight-card">
+                            <div class="card-header">
+                                <h3>Wind Status</h3>
+                                <div class="wind-value" id="wind-value">12 <span>km/h</span></div>
+                            </div>
+                            <div class="wind-direction">
+                                <div class="wind-arrow" id="wind-arrow">
+                                    <i class="fas fa-location-arrow"></i>
+                                </div>
+                                <span id="wind-direction">NE</span>
+                            </div>
+                            <div class="wind-status" id="wind-status">Gentle breeze</div>
+                        </div>
+                        
+                        <!-- Visibility -->
+                        <div class="highlight-card">
+                            <div class="card-header">
+                                <h3>Visibility</h3>
+                                <div class="visibility-value" id="visibility-value">10 <span>km</span></div>
+                            </div>
+                            <div class="visibility-status" id="visibility-status">Clear visibility</div>
+                            <div class="visibility-bar">
+                                <div class="visibility-progress" id="visibility-progress"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pressure -->
+                        <div class="highlight-card">
+                            <div class="card-header">
+                                <h3>Pressure</h3>
+                                <div class="pressure-value" id="pressure-value">1012 <span>hPa</span></div>
+                            </div>
+                            <div class="pressure-status" id="pressure-status">Normal</div>
+                            <div class="pressure-gauge">
+                                <div class="gauge" id="pressure-gauge"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 5-Day Forecast -->
+                <section class="forecast-section">
+                    <h2 class="section-title">5-Day Forecast</h2>
+                    <div class="forecast-cards" id="forecast-cards">
+                        <!-- Forecast cards will be dynamically inserted here -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Weather Animation Canvas -->
+    <canvas id="weather-canvas"></canvas>
+
+    <!-- Auth Modal -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <div class="auth-form" id="auth-form">
+                <h2 id="auth-title">Log In</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" class="btn submit-btn">Log In</button>
+                </form>
+                <p id="auth-switch">Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
